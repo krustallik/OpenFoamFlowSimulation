@@ -1,0 +1,30 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      dynamicMeshDict;
+}
+dynamicFvMesh   dynamicMotionSolverFvMesh;
+
+motionSolverLibs ("libfvMotionSolvers.so");
+
+solver          multiRegionSixDoFRigidBodyMotion; // або sixDoFRigidBodyMotion - залежить від версії
+
+sixDoFRigidBodyMotionCoeffs
+{
+    patches         (blades);
+
+    // Центр обертання (x y z). Потрібно задати так, щоб збігався з віссю лопатей!
+    origin          (0.97194 -1.4122 0.19414);
+
+    // Ось обертання - припустимо, що це z (0 0 1)
+    axis            (0 0 1);
+
+    // Кутова швидкість (рад/с). Наприклад, 100 рад/с ~ 955 об/хв
+    omega           100;
+
+    // Можна задати рух: "velocity" чи "acceleration" - або просто фіксоване
+    // Шаблон min, здебільшого вистачає omega
+}

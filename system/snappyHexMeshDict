@@ -1,0 +1,119 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      snappyHexMeshDict;
+}
+
+castellatedMesh true;
+snap            true;
+addLayers       false; // Призматичні шари вимкнені
+
+geometry
+{
+    walls.stl
+    {
+        type triSurfaceMesh;
+        name walls;
+    }
+
+    inlet.stl
+    {
+        type triSurfaceMesh;
+        name inlet;
+    }
+
+    outlet.stl
+    {
+        type triSurfaceMesh;
+        name outlet;
+    }
+
+    drone.stl
+    {
+        type triSurfaceMesh;
+        name drone;
+    }
+
+    blades.stl
+    {
+        type triSurfaceMesh;
+        name blades;
+    }
+}
+
+
+castellatedMeshControls
+{
+    maxLocalCells 100000;
+    maxGlobalCells 2000000;
+    minRefinementCells 10;
+    nCellsBetweenLevels 3;
+
+    features ();
+
+    refinementSurfaces
+{
+    walls
+    {
+        level (1 1);
+    }
+    inlet
+    {
+        level (1 1);
+    }
+    outlet
+    {
+        level (1 1);
+    }
+    drone
+    {
+        level (4 5);
+    }
+    blades
+    {
+        level (4 5);  // Припустимо, що лопатям даємо детальнішу розбивку
+    }
+}
+
+
+    resolveFeatureAngle 30;
+
+    locationInMesh (1 5 1); // Точка всередині домену
+    allowFreeStandingZoneFaces true;
+}
+
+snapControls
+{
+    nSmoothPatch 3;
+    tolerance 1;
+    nSolveIter 30;
+    nRelaxIter 5;
+}
+
+addLayersControls
+{
+    relativeSizes true;
+    layers {};
+    expansionRatio 1.2;
+    finalLayerThickness 0.3;
+}
+
+meshQualityControls
+{
+    maxNonOrtho 65;
+    maxBoundarySkewness 20;
+    maxInternalSkewness 4;
+    maxConcave 80;
+    minVol 1e-13;
+    minTetQuality 1e-12;
+    minFaceWeight 0.02;
+    minVolRatio 0.01;
+    minTwist 0.02;
+    minDeterminant 0.001;
+    errorReduction 0.75;
+    nSmoothScale 4;
+}
+
+mergeTolerance 1e-6;

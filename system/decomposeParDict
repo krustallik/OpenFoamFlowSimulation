@@ -1,0 +1,23 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  DecomposePar   | OpenFOAM: The Open Source CFD Toolbox            |
+|  \\    /   Dictionary     | Version:  10                                     |
+|   \\  /    for parallel  |                                                 |
+|    \\/     decomposition |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      decomposeParDict;
+}
+
+// Кількість піддоменів (процесів), з якою ви плануєте запускати розрахунок
+numberOfSubdomains 6;
+
+// Метод розподілу. Метода "scotch" є універсальним і добре працює у багатьох випадках.
+method          scotch;
+
+// (За потреби, можна налаштувати додаткові параметри, наприклад, для hierarchical методу)
