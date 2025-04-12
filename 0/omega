@@ -18,7 +18,6 @@ FoamFile
 dimensions      [0 0 -1 0 0 0 0];
 
 internalField   uniform 10;
-
 boundaryField
 {
     inlet
@@ -40,10 +39,26 @@ boundaryField
         type            omegaWallFunction;
         value           uniform 10;
     }
-    blades
+    blade1
+    {
+        type            omegaWallFunction;
+        value           uniform 10;
+    }
+    blade2
+    {
+        type            omegaWallFunction;
+        value           uniform 10;
+    }
+    blade3
+    {
+        type            omegaWallFunction;
+        value           uniform 10;
+    }
+    blade4
     {
         type            omegaWallFunction;
         value           uniform 10;
     }
 }
+
 // ************************************************************************* //

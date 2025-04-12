@@ -36,12 +36,28 @@ geometry
         name drone;
     }
 
-    blades.stl
+    blade1.stl
     {
         type triSurfaceMesh;
-        name blades;
+        name blade1;
+    }
+    blade2.stl
+    {
+        type triSurfaceMesh;
+        name blade2;
+    }
+    blade3.stl
+    {
+        type triSurfaceMesh;
+        name blade3;
+    }
+    blade4.stl
+    {
+        type triSurfaceMesh;
+        name blade4;
     }
 }
+
 
 
 castellatedMeshControls
@@ -54,7 +70,7 @@ castellatedMeshControls
     features ();
 
     refinementSurfaces
-{
+	{
     walls
     {
         level (1 1);
@@ -71,11 +87,24 @@ castellatedMeshControls
     {
         level (4 5);
     }
-    blades
+    blade1
     {
-        level (4 5);  // Припустимо, що лопатям даємо детальнішу розбивку
+        level (4 5);
+    }
+    blade2
+    {
+        level (4 5);
+    }
+    blade3
+    {
+        level (4 5);
+    }
+    blade4
+    {
+        level (4 5);
     }
 }
+
 
 
     resolveFeatureAngle 30;

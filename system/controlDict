@@ -32,6 +32,7 @@ functions
         outputInterval  50;  // кожен крок, можна змінити за потреби
 
         // Перелічіть патчі, для яких необхідно обчислювати wall shear stress
-        patches         (drone blades);
+            patches         (drone blade1 blade2 blade3 blade4);
+
     }
 }

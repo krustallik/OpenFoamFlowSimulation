@@ -39,7 +39,22 @@ boundaryField
         type            nutUWallFunction;
         value           uniform 0;
     }
-    blades
+    blade1
+    {
+        type            nutUWallFunction;
+        value           uniform 0;
+    }
+    blade2
+    {
+        type            nutUWallFunction;
+        value           uniform 0;
+    }
+    blade3
+    {
+        type            nutUWallFunction;
+        value           uniform 0;
+    }
+    blade4
     {
         type            nutUWallFunction;
         value           uniform 0;

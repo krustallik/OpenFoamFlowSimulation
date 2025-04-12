@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
-| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox            |
-|  \\    /   O peration     | Version: 10                                      |
+| \\      /  Field         | OpenFOAM: The Open Source CFD Toolbox            |
+|  \\    /   Operation     | Version: 10                                      |
 |   \\  /    A nd           |                                                 |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -14,14 +14,14 @@ FoamFile
     object      U;
 }
 dimensions      [0 1 -1 0 0 0 0];
-internalField   uniform (10 0 0);  // 10 м/с по осі x
+internalField   uniform (0 -10 0);  // 10 м/с по осі -y
 
 boundaryField
 {
     inlet
     {
         type            fixedValue;
-        value           uniform (10 0 0);
+        value           uniform (0 -10 0);
     }
     outlet
     {
@@ -35,9 +35,24 @@ boundaryField
     {
         type            noSlip;
     }
-    blades
-    {
-        type            movingWallVelocity;
-        value           uniform (0 0 0);
-    }
+    blade1
+	{
+	    type            movingWallVelocity;
+ 	   value           uniform (0 0 0);
+	}
+	blade2
+	{
+ 	   type            movingWallVelocity;
+ 	   value           uniform (0 0 0);
+	}
+	blade3
+	{
+ 	   type            movingWallVelocity;
+ 	   value           uniform (0 0 0);
+	}
+	blade4
+	{
+ 	   type            movingWallVelocity;
+ 	   value           uniform (0 0 0);
+	}
 }

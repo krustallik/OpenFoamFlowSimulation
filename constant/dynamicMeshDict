@@ -1,30 +1,35 @@
-/*--------------------------------*- C++ -*----------------------------------*\
-FoamFile
-{
-    version     2.0;
-    format      ascii;
-    class       dictionary;
-    object      dynamicMeshDict;
-}
-dynamicFvMesh   dynamicMotionSolverFvMesh;
-
-motionSolverLibs ("libfvMotionSolvers.so");
-
-solver          multiRegionSixDoFRigidBodyMotion; // або sixDoFRigidBodyMotion - залежить від версії
-
 sixDoFRigidBodyMotionCoeffs
 {
-    patches         (blades);
-
-    // Центр обертання (x y z). Потрібно задати так, щоб збігався з віссю лопатей!
-    origin          (0.97194 -1.4122 0.19414);
-
-    // Ось обертання - припустимо, що це z (0 0 1)
-    axis            (0 0 1);
-
-    // Кутова швидкість (рад/с). Наприклад, 100 рад/с ~ 955 об/хв
-    omega           100;
-
-    // Можна задати рух: "velocity" чи "acceleration" - або просто фіксоване
-    // Шаблон min, здебільшого вистачає omega
+    // Набір для blade1
+    blade1
+    {
+        patches         (blade1);
+        origin          (0.96654 -1.41287 0.190784);
+        axis            (0 0 1);
+        omega           100;
+    }
+    // Набір для blade2
+    blade2
+    {
+        patches         (blade2);
+        origin          (-0.96992 -1.4173 0.19075);
+        axis            (0 0 1);
+        omega           100;
+    }
+    // Набір для blade3
+    blade3
+    {
+        patches         (blade3);
+        origin          (-0.970288 1.41632 0.190537);
+        axis            (0 0 1);
+        omega           100;
+    }
+    // Набір для blade4
+    blade4
+    {
+        patches         (blade4);
+        origin          (0.968339 1.41394 0.19099);
+        axis            (0 0 1);
+        omega           100;
+    }
 }

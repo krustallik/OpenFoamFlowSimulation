@@ -2,8 +2,8 @@
 | =========                 | OpenFOAM: The Open Source CFD Toolbox            |
 | \\      /  Field         | Version: 10                                      |
 |  \\    /   Operation     |                                                 |
-|   \\  /    A nd           |                                                 |
-|    \\/     M anipulation  |                                                 |
+|   \\  /    And           |                                                 |
+|    \\/     Manipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
@@ -39,9 +39,24 @@ boundaryField
         type            kqRWallFunction;
         value           uniform 0.1;
     }
-    blades
+    blade1
     {
         type            kqRWallFunction;
         value           uniform 0.1;
     }
-
+    blade2
+    {
+        type            kqRWallFunction;
+        value           uniform 0.1;
+    }
+    blade3
+    {
+        type            kqRWallFunction;
+        value           uniform 0.1;
+    }
+    blade4
+    {
+        type            kqRWallFunction;
+        value           uniform 0.1;
+    }
+}
