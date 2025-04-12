@@ -6,7 +6,7 @@ FoamFile
     object      controlDict;
 }
 
-application     pimpleFoam;
+application     incompressibleFluid;
 
 startFrom       latestTime;
 startTime       0;
@@ -21,18 +21,27 @@ writeInterval   10;
 
 purgeWrite      0;
 
-functions
+wallShearStress1
 {
-    wallShearStress
-    {
-        type            wallShearStress;
-        functionObjectLibs ("libfieldFunctionObjects.so");
-        // Коли виводити результати: кожен часовий крок або за заданим інтервалом
-        writeControl    timeStep;
-        writeInterval   10;  // виводити кожні 50 кроків
-      
-        // Перелічіть патчі, для яких потрібно обчислювати wall shear stress
-        patches         (drone blade1 blade2 blade3 blade4);
-    }
+    // Обов’язкові параметри (непіддавати змін)
+    type            wallShearStress;
+    libs            (fieldFunctionObjects);
+
+    // Опціональні параметри, які можна змінювати під час роботи:
+    patches         (drone blade1 blade2 blade3 blade4);  // перелік патчів, для яких потрібно розраховувати wall shear stress
+
+    // Інші опції (успадковані):
+    writePrecision  8;         // точність запису значень
+    writeToFile     true;      // чи записувати результати у файл
+    useUserTime     true;      // чи використовувати часу, заданий користувачем
+    enabled         true;
+    log             true;
+    timeStart       0;
+    timeEnd         1000;
+    executeControl  timeStep;
+    executeInterval 1;         // виконувати кожен крок
+    writeControl    timeStep;
+    writeInterval   10;         // записувати результати кожен крок
 }
+
 

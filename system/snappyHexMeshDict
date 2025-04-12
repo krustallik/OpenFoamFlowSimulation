@@ -15,45 +15,53 @@ geometry
     walls.stl
     {
         type triSurfaceMesh;
+        file "walls.stl";      // <-- Вкажіть тут файл
         name walls;
     }
 
     inlet.stl
     {
         type triSurfaceMesh;
+        file "inlet.stl";
         name inlet;
     }
 
     outlet.stl
     {
         type triSurfaceMesh;
+        file "outlet.stl";
         name outlet;
     }
 
     drone.stl
     {
         type triSurfaceMesh;
+        file "drone.stl";
         name drone;
     }
 
     blade1.stl
     {
         type triSurfaceMesh;
+        file "blade1.stl";
         name blade1;
     }
     blade2.stl
     {
         type triSurfaceMesh;
+        file "blade2.stl";
         name blade2;
     }
     blade3.stl
     {
         type triSurfaceMesh;
+        file "blade3.stl";
         name blade3;
     }
     blade4.stl
     {
         type triSurfaceMesh;
+        file "blade4.stl";
         name blade4;
     }
 }
