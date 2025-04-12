@@ -62,8 +62,8 @@ geometry
 
 castellatedMeshControls
 {
-    maxLocalCells 100000;
-    maxGlobalCells 2000000;
+    maxLocalCells 300000;
+    maxGlobalCells 6000000;
     minRefinementCells 10;
     nCellsBetweenLevels 3;
 
@@ -109,7 +109,7 @@ castellatedMeshControls
 
     resolveFeatureAngle 30;
 
-    locationInMesh (1 5 1); // Точка всередині домену
+    locationInMesh (1 -20 -2); // Точка всередині домену
     allowFreeStandingZoneFaces true;
 }
 
