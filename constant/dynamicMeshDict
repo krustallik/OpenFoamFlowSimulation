@@ -1,47 +1,88 @@
+/*---------------------------------------------------------------------------*\
+| =========                 | OpenFOAM: The Open Source CFD Toolbox            |
+| \\      /  F ield         | Version: 12                                      |
+|  \\    /   O peration     |                                                  |
+|   \\  /    A nd           |                                                  |
+|    \\/     M anipulation  |                                                  |
+\*---------------------------------------------------------------------------*/
 FoamFile
 {
     version     2.0;
     format      ascii;
     class       dictionary;
     object      dynamicMeshDict;
+    location    "constant";
 }
 
-dynamicFvMesh   dynamicMotionSolverFvMesh;
 
-motionSolverLibs ("libfvMotionSolvers.so");
-
-solver          multiRegionSixDoFRigidBodyMotion; 
-// або sixDoFRigidBodyMotion - залежить від вашої версії та потреб
-
-sixDoFRigidBodyMotionCoeffs
+mover
 {
-    // Приклад налаштувань для кожного blade
-    blade1
-    {
-        patches (blade1);
-        origin  (0.96654 -1.41287 0.190784);
-        axis    (0 0 1);
-        omega   200;
-    }
+    type            motionSolver;
+    libs            ("libfvMotionSolvers.so");
+    motionSolver    solidBody;
+    solidBodyMotionFunction multiMotion;
+    select          cellZone;
+cellZone blade1Zone;
+
+blade1{
+select          cellZone;
+
+    cellZone blade1Zone;
+
+
+        solidBodyMotionFunction rotatingMotion;
+        rotatingMotionCoeffs
+        {
+            origin                  (3.85441 1.43974 0.777668); // Центр обертання для Blade 1 (у метрах)
+            axis      (0 0 1);                   // Ось обертання – навколо осі Z
+            omega     300[rpm];                      // Кутова швидкість у рад/с
+        }
+}
+
+
+    // --- Налаштування для Blade 2 ---
     blade2
     {
-        patches (blade2);
-        origin  (-0.96992 -1.4173 0.19075);
-        axis    (0 0 1);
-        omega   200;
+select          cellZone;
+
+        cellZone    blade2Zone;
+        solidBodyMotionFunction rotatingMotion;
+        rotatingMotionCoeffs
+        {
+            origin                  (-3.85788 1.43293 0.776211); // Центр обертання для Blade 2
+            axis      (0 0 1);
+            omega     200[rpm];
+        }
     }
+
+    // --- Налаштування для Blade 3 ---
     blade3
     {
-        patches (blade3);
-        origin  (-0.970288 1.41632 0.190537);
-        axis    (0 0 1);
-        omega   200;
+select          cellZone;
+
+        cellZone    blade3Zone;
+        solidBodyMotionFunction rotatingMotion;
+        rotatingMotionCoeffs
+        {
+            origin                  (3.85849 12.7594 0.7778); // Центр обертання для Blade 3
+            axis      (0 0 1);
+            omega     200[rpm];
+        }
     }
+
+    // --- Налаштування для Blade 4 ---
     blade4
     {
-        patches (blade4);
-        origin  (0.968339 1.41394 0.19099);
-        axis    (0 0 1);
-        omega   200;
+select          cellZone;
+
+        cellZone    blade4Zone;
+        solidBodyMotionFunction rotatingMotion;
+        rotatingMotionCoeffs
+        {
+            origin    (0.968339 1.41394 0.19099);  // Центр обертання для Blade 4
+            axis      (0 0 1);
+           omega     200[rpm];
+        }
     }
+
 }

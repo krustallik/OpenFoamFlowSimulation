@@ -1,0 +1,119 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+|  \\    /   O peration     |
+|   \\  /    A nd           |
+|    \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      topoSetDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+actions
+(
+    // --- Blade 1 ---
+    {
+        // 1. Створюємо faceSet з патча blade1 за допомогою джерела patchToFace
+        name blade1FaceSet;
+        type faceSet;
+        action new;
+        source patchToFace;
+        sourceInfo
+        {
+            name blade1;
+        }
+    }
+    {
+        // 2. Перетворюємо отриманий faceSet у cellZoneSet для dynamicMesh
+        name blade1Zone;
+        type cellZoneSet;
+        action new;
+        source faceToCell;
+        sourceInfo
+        {
+            set blade1FaceSet;
+            option any;
+        }
+    }
+
+    // --- Blade 2 ---
+    {
+        // 1. Створюємо faceSet з патча blade2 за допомогою джерела patchToFace
+        name blade2FaceSet;
+        type faceSet;
+        action new;
+        source patchToFace;
+        sourceInfo
+        {
+            name blade2;
+        }
+    }
+    {
+        // 2. Перетворюємо отриманий faceSet у cellZoneSet для dynamicMesh
+        name blade2Zone;
+        type cellZoneSet;
+        action new;
+        source faceToCell;
+        sourceInfo
+        {
+            set blade2FaceSet;
+            option any;
+        }
+    }
+
+    // --- Blade 3 ---
+    {
+        // 1. Створюємо faceSet з патча blade3 за допомогою джерела patchToFace
+        name blade3FaceSet;
+        type faceSet;
+        action new;
+        source patchToFace;
+        sourceInfo
+        {
+            name blade3;
+        }
+    }
+    {
+        // 2. Перетворюємо отриманий faceSet у cellZoneSet для dynamicMesh
+        name blade3Zone;
+        type cellZoneSet;
+        action new;
+        source faceToCell;
+        sourceInfo
+        {
+            set blade3FaceSet;
+            option any;
+        }
+    }
+
+    // --- Blade 4 ---
+    {
+        // 1. Створюємо faceSet з патча blade4 за допомогою джерела patchToFace
+        name blade4FaceSet;
+        type faceSet;
+        action new;
+        source patchToFace;
+        sourceInfo
+        {
+            name blade4;
+        }
+    }
+    {
+        // 2. Перетворюємо отриманий faceSet у cellZoneSet для dynamicMesh
+        name blade4Zone;
+        type cellZoneSet;
+        action new;
+        source faceToCell;
+        sourceInfo
+        {
+            set blade4FaceSet;
+            option any;
+        }
+    }
+);

@@ -6,18 +6,19 @@ FoamFile
     object      controlDict;
 }
 
-application     incompressibleFluid;
+application     foamRun;
+
+solver incompressibleFluid;
 
 startFrom       latestTime;
 startTime       0;
 
 stopAt          endTime;
-//endTime         1;
-endTime         0.1;
+endTime         1;
 deltaT          0.001;
 
 writeControl    timeStep;
-writeInterval   10;
+writeInterval   1;
 
 purgeWrite      0;
 
@@ -37,11 +38,10 @@ wallShearStress1
     enabled         true;
     log             true;
     timeStart       0;
-    timeEnd         1000;
+    timeEnd         1;
     executeControl  timeStep;
     executeInterval 1;         // виконувати кожен крок
     writeControl    timeStep;
-    writeInterval   10;         // записувати результати кожен крок
+    writeInterval   1;;         // записувати результати кожен крок
 }
-
 

@@ -78,6 +78,19 @@ solvers
         tolerance       1e-05;
         relTol          0;
     }
+yPsiFinal
+    {
+        solver          smoothSolver;
+        smoother        GaussSeidel;
+        tolerance       1e-05;
+        relTol          0;
+    }
+"pcorr.*"
+    {
+        $p;
+        tolerance       1e-2;
+        relTol          0;
+    }
 }
 
 
