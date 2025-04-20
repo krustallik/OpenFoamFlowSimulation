@@ -1,0 +1,19 @@
+//generate box:
+blockMesh
+
+//generate mesh files from stl files:
+surfaceFeatures
+
+//cut drone and another objects from bok:
+snappyHexMesh -overwrite
+
+//divide calculating into 6 processors
+decomposePar
+
+//start simulation
+mpirun -np 6 foamRun -solver incompressibleFluid -parallel
+
+//connect all prpcessors data together
+
+
+//export to VTK

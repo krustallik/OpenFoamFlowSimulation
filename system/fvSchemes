@@ -1,0 +1,66 @@
+ /*--------------------------------*- C++ -*----------------------------------*\
+| =========                 | OpenFOAM: The Open Source CFD Toolbox            |
+| \\      /  Field         | Version:  12                                     |
+|  \\    /   Operation     |                                                 |
+|   \\  /    A nd           |                                                 |
+|    \\/     Manipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    object      fvSchemes;        // Опис схем дискретизації полів
+}
+// system/fvSchemes
+
+ddtSchemes
+{
+    default         steadyState;
+}
+
+gradSchemes
+{
+    default         Gauss linear;
+    limited         cellLimited Gauss linear 1;
+
+    grad(U)         Gauss linear;
+    grad(k)         $limited;           // турбул. енергія
+    grad(epsilon)   $limited;           // дисипація ε
+}
+
+divSchemes
+{
+    default         none;
+
+    // конвекція моментуму
+    div(phi,U)      bounded Gauss linearUpwind limited;
+
+    // єдиний turbo‐alias для k та ε
+    turbulence      bounded Gauss limitedLinear 1;
+
+    div(phi,k)      $turbulence;        // конвекція k
+    div(phi,epsilon) $turbulence;       // конвекція ε
+
+    // вязкий член у рівнянні U
+    div((nuEff*dev2(T(grad(U))))) Gauss linear;
+}
+
+laplacianSchemes
+{
+    default         Gauss linear corrected;
+}
+
+interpolationSchemes
+{
+    default         linear;
+}
+
+snGradSchemes
+{
+    default         corrected;
+}
+
+wallDist
+{
+    method meshWave;
+}

@@ -1,0 +1,23 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+
+application     foamRun;
+
+solver          incompressibleFluid;
+startFrom       latestTime;
+startTime       0;
+
+stopAt          endTime;
+endTime         1500;
+deltaT          1;
+
+writeControl    timeStep;    // керуємо записом за кроками
+writeInterval   100;         // записуємо файли тільки кожні 500 кроків
+
+purgeWrite      0;
+runTimeModifiable true;

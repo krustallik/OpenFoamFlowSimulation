@@ -1,0 +1,162 @@
+
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 | OpenFOAM: The Open Source CFD Toolbox            |
+| \\      /  Field         | Version:  12                                     |
+|  \\    /   Operation     |                                                 |
+|   \\  /    A nd           |                                                 |
+|    \\/     Manipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      snappyHexMeshDict;
+}
+#includeEtc "caseDicts/mesh/generation/snappyHexMeshDict.cfg"
+castellatedMesh true;
+snap            true;
+addLayers       true;  // якщо вам потрібні prism‑шари
+
+geometry
+{
+    walls.stl
+    {
+        type triSurfaceMesh;
+        file "walls.stl";
+        name walls;
+    }
+    inlet.stl
+    {
+        type triSurfaceMesh;
+        file "inlet.stl";
+        name inlet;
+    }
+    outlet.stl
+    {
+        type triSurfaceMesh;
+        file "outlet.stl";
+        name outlet;
+    }
+    drone.stl
+    {
+        type triSurfaceMesh;
+        file "drone.stl";
+        name drone;
+    }
+    blade1.stl
+    {
+        type triSurfaceMesh;
+        file "blade1.stl";
+        name blade1;
+    }
+    blade2.stl
+    {
+        type triSurfaceMesh;
+        file "blade2.stl";
+        name blade2;
+    }
+    blade3.stl
+    {
+        type triSurfaceMesh;
+        file "blade3.stl";
+        name blade3;
+    }
+    blade4.stl
+    {
+        type triSurfaceMesh;
+        file "blade4.stl";
+        name blade4;
+    }
+}
+
+castellatedMeshControls
+{
+    maxLocalCells       100000;
+    maxGlobalCells      2000000;
+    minRefinementCells  10;
+    nCellsBetweenLevels 4;
+
+    features
+    (
+        { file "drone.eMesh";  level 1; }
+        { file "blade1.eMesh"; level 1; }
+        { file "blade2.eMesh"; level 1; }
+        { file "blade3.eMesh"; level 1; }
+        { file "blade4.eMesh"; level 1; }
+    );
+
+    refinementSurfaces
+    {
+        walls   { level (1 1); }
+        inlet   { level (1 1); }
+        outlet  { level (1 1); }
+        drone   { level (3 4); }
+        blade1   { level (3 4); }
+        blade2   { level (3 4); }
+        blade3   { level (3 4); }
+        blade4   { level (3 4); }
+    }
+
+    resolveFeatureAngle 30;      // тільки він, без featureAngle
+
+    locationInMesh (0 0 0);
+    allowFreeStandingZoneFaces true;
+}
+
+snapControls
+{
+    nSmoothPatch 4;
+    tolerance    2;
+    nSolveIter   50;
+    nRelaxIter   7;
+}
+
+addLayersControls
+{
+    relativeSizes         false;
+    nLayerIter            50;
+    nBufferCellsNoExtrude 0;
+    nGrow                 0;
+
+    layers
+    {
+        walls   { nSurfaceLayers 3; }
+        drone   { nSurfaceLayers 3; }
+        blade1  { nSurfaceLayers 2; }
+        blade2  { nSurfaceLayers 2; }
+        blade3  { nSurfaceLayers 2; }
+        blade4  { nSurfaceLayers 2; }
+    }
+
+    expansionRatio        1.2;       // growth factor between layers
+    minThickness        1e-3;
+    finalLayerThickness   0.0084; 
+
+    nRelaxIter            5;
+    nSmoothSurfaceNormals 1;
+    nSmoothThickness      10;
+    maxFaceThicknessRatio 0.5;
+    maxThicknessToMedialRatio 0.3;
+}
+
+
+
+meshQualityControls
+{
+    maxNonOrtho           65;    // as before
+    maxBoundarySkewness   4;    // allow up to 20 on walls
+    maxInternalSkewness   3;     // reject any internal face with skewness >4
+    maxConcave            80;
+    minVol                1e-13;
+    minTetQuality         1e-12;
+    minFaceWeight         0.02;
+    minVolRatio           0.01;
+    minTwist              0.02;
+    minDeterminant        0.001;
+    errorReduction        0.75;
+    nSmoothScale          5;     // how many times to try smoothing
+}
+
+
+mergeTolerance 1e-6;

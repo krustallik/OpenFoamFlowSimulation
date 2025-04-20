@@ -1,0 +1,128 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 12-86e126a7bc4d
+Exec   : decomposePar
+Date   : Apr 18 2025
+Time   : 12:12:57
+Host   : "IhorPC"
+PID    : 71758
+I/O    : uncollated
+Case   : /home/ihor/OpenFOAM/ihor-10/myWindTunnelCase
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Calculating distribution of cells
+
+Selecting decomposer scotch
+
+Finished decomposition in 1.50902 s
+
+Calculating original mesh data
+
+Distributing cells to processors
+
+Distributing faces to processors
+
+Distributing points to processors
+
+Constructing processor meshes
+
+Processor 0
+    Number of cells = 151339
+    Number of faces shared with processor 1 = 2775
+    Number of faces shared with processor 3 = 3099
+    Number of faces shared with processor 4 = 747
+    Number of faces shared with processor 5 = 2087
+    Number of processor patches = 4
+    Number of processor faces = 8708
+    Number of boundary faces = 17903
+
+Processor 1
+    Number of cells = 149228
+    Number of faces shared with processor 0 = 2775
+    Number of faces shared with processor 2 = 2376
+    Number of faces shared with processor 3 = 1414
+    Number of faces shared with processor 4 = 217
+    Number of faces shared with processor 5 = 364
+    Number of processor patches = 5
+    Number of processor faces = 7146
+    Number of boundary faces = 18248
+
+Processor 2
+    Number of cells = 150374
+    Number of faces shared with processor 1 = 2376
+    Number of processor patches = 1
+    Number of processor faces = 2376
+    Number of boundary faces = 21885
+
+Processor 3
+    Number of cells = 148776
+    Number of faces shared with processor 0 = 3099
+    Number of faces shared with processor 1 = 1414
+    Number of faces shared with processor 4 = 1247
+    Number of faces shared with processor 5 = 1089
+    Number of processor patches = 4
+    Number of processor faces = 6849
+    Number of boundary faces = 13314
+
+Processor 4
+    Number of cells = 147963
+    Number of faces shared with processor 0 = 747
+    Number of faces shared with processor 1 = 217
+    Number of faces shared with processor 3 = 1247
+    Number of faces shared with processor 5 = 3115
+    Number of processor patches = 4
+    Number of processor faces = 5326
+    Number of boundary faces = 12954
+
+Processor 5
+    Number of cells = 148324
+    Number of faces shared with processor 0 = 2087
+    Number of faces shared with processor 1 = 364
+    Number of faces shared with processor 3 = 1089
+    Number of faces shared with processor 4 = 3115
+    Number of processor patches = 4
+    Number of processor faces = 6655
+    Number of boundary faces = 13802
+
+Number of processor faces = 18530
+Max number of cells = 151339 (1.34263% above average 149334)
+Max number of processor patches = 5 (36.3636% above average 3.66667)
+Max number of faces between processors = 8708 (40.9822% above average 6176.67)
+
+Time = 0s
+
+Decomposing FV fields
+
+    Decomposing volScalarFields
+
+        ReThetat.disabled
+        gammaInt.disabled
+        nut
+        omega.disabled
+        p
+        k
+        epsilon
+
+    Decomposing volVectorFields
+
+        U
+
+Decomposing point fields
+
+    (no point fields)
+
+Distributing uniform files
+
+End
+

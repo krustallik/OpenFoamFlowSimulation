@@ -1,0 +1,30 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 | OpenFOAM: The Open Source CFD Toolbox            |
+| \\      /  Field         | Version: 12                                     |
+|  \\    /   Operation     |                                                 |
+|   \\  /    A nd           |                                                 |
+|    \\/     Manipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      momentumTransport;  // (раніше RASProperties)
+}
+
+
+simulationType  RAS;
+
+RAS
+{
+    // Переключаємося на стандартний k–ε
+    RASModel        kEpsilon;
+    turbulence      on;
+    printCoeffs     on;
+}
+
+// Залишаємо інші параметри за замовчуванням
+
+nu              [0 2 -1 0 0 0 0] 1.5e-05;
+rho             [1 -3 0 0 0 0 0] 1.225;    

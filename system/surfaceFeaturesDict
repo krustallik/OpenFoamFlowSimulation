@@ -1,0 +1,23 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| surfaceFeaturesDict — витягування «гострих» ребер із STL/OBJ          |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      surfaceFeaturesDict;
+}
+
+// Список поверхонь, з яких будемо витягувати edges
+surfaces
+(
+    "drone.stl"
+    "blade1.stl"
+    "blade2.stl"
+    "blade3.stl"
+    "blade4.stl"
+);
+
+// Підключаємо шаблон із параметрами extractionCoeffs (featureAngle тощо)
+#includeEtc "caseDicts/surface/surfaceFeaturesDict.cfg"

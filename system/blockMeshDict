@@ -1,0 +1,71 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+
+convertToMeters 1.0;
+
+vertices
+(
+    (-3.000 -10.000 -2.600)   // 0: нижня ліва задня (bottom left back)
+    ( 3.000 -10.000 -2.600)   // 1: нижня права задня (bottom right back)
+    ( 3.000  10.000 -2.600)   // 2: нижня права передня (bottom right front)
+    (-3.000  10.000 -2.600)   // 3: нижня ліва передня (bottom left front)
+
+    (-3.000 -10.000  2.600)   // 4: верхня ліва задня (top left back)
+    ( 3.000 -10.000  2.600)   // 5: верхня права задня (top right back)
+    ( 3.000  10.000  2.600)   // 6: верхня права передня (top right front)
+    (-3.000  10.000  2.600)   // 7: верхня ліва передня (top left front)
+);
+
+
+
+blocks
+(
+    hex (0 1 2 3 4 5 6 7) (30 100 25) simpleGrading (1 1 1)
+
+);
+
+edges
+(
+);
+
+boundary
+(
+    inlet
+    {
+        type patch;
+        faces
+        (
+            (3 7 6 2)
+	    
+        );
+    }
+    outlet
+    {
+        type patch;
+        faces
+        (
+            (0 1 5 4)
+	    
+        );
+    }
+    walls
+    {
+        type wall;
+        faces
+        (
+            (0 4 7 3)
+            (1 2 6 5)
+            (0 3 2 1)
+            (4 5 6 7)
+        );
+    }
+);
+
+mergePatchPairs
+(
+);
