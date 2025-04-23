@@ -1,0 +1,62 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| k: турбулентна кінетична енергія                                        |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       volScalarField;
+    object      k;
+}
+
+dimensions      [0 2 -2 0 0 0 0];    // m²/s²
+
+// Вхідні умови: U=10 м/с, I=5% → k≈1.5*(U*I)²≈0.19
+internalField   uniform 0.19;
+
+boundaryField
+{
+    inlet
+    {
+        type            fixedValue;
+        value           uniform 0.19;
+    }
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      uniform 0.19;
+        value           uniform 0.19;
+    }
+    // Для всіх стінок (drone, blade*, walls) — wall‑function
+    walls
+    {
+        type            kqRWallFunction;
+        value           uniform 0.19;
+    }
+    drone
+    {
+        type            kqRWallFunction;
+        value           uniform 0.19;
+    }
+    blade1
+    {
+        type            kqRWallFunction;
+        value           uniform 0.19;
+    }
+    blade2
+    {
+        type            kqRWallFunction;
+        value           uniform 0.19;
+    }
+    blade3
+    {
+        type            kqRWallFunction;
+        value           uniform 0.19;
+    }
+    blade4
+    {
+        type            kqRWallFunction;
+        value           uniform 0.19;
+    }
+
+    #includeEtc "caseDicts/setConstraintTypes"
+}

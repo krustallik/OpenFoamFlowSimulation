@@ -1,0 +1,62 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| ε: дисипація турбулентної кінетичної енергії                             |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       volScalarField;
+    object      epsilon;
+}
+
+dimensions      [0 2 -3 0 0 0 0];   // m²/s³
+
+// Оцінка ε: Cμ^0.75 * k^(3/2) / L ≈ 0.09^0.75*0.19^(1.5)/L
+// Для спрощення візьмемо uniform 0.01
+internalField   uniform 0.01;
+
+boundaryField
+{
+    inlet
+    {
+        type            fixedValue;
+        value           uniform 0.01;
+    }
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      uniform 0.01;
+        value           uniform 0.01;
+    }
+    walls
+    {
+        type            epsilonWallFunction;
+        value           uniform 0.01;
+    }
+    drone
+    {
+        type            epsilonWallFunction;
+        value           uniform 0.01;
+    }
+    blade1
+    {
+        type            epsilonWallFunction;
+        value           uniform 0.01;
+    }
+    blade2
+    {
+        type            epsilonWallFunction;
+        value           uniform 0.01;
+    }
+    blade3
+    {
+        type            epsilonWallFunction;
+        value           uniform 0.01;
+    }
+    blade4
+    {
+        type            epsilonWallFunction;
+        value           uniform 0.01;
+    }
+
+    #includeEtc "caseDicts/setConstraintTypes"
+}

@@ -1,0 +1,56 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  Field         | OpenFOAM: The Open Source CFD Toolbox            |
+|  \\    /   Operation     | Version: 10                                      |
+|   \\  /    A nd           |                                                 |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    location    "0";
+    object      U;
+}
+dimensions      [0 1 -1 0 0 0 0];
+internalField   uniform (0 -10 0);  // 10 м/с по осі -y
+
+boundaryField
+{
+    inlet
+    {
+        type            fixedValue;
+        value           uniform (0 -10 0);
+    }
+    outlet
+    {
+	type            pressureInletOutletVelocity;
+        value           uniform (0 0 0);
+    }
+    walls
+    {
+        type            noSlip;
+    }
+    drone
+    {
+        type            noSlip;
+    }
+    blade1
+	{
+	    type            noSlip;
+	}
+	blade2
+	{
+ 	   type            noSlip;
+	}
+	blade3
+	{
+ 	   type            noSlip;
+	}
+	blade4
+	{
+ 	   type            noSlip;
+	}
+#includeEtc "caseDicts/setConstraintTypes"
+}

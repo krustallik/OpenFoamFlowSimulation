@@ -1,0 +1,63 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  Field         | OpenFOAM: The Open Source CFD Toolbox            |
+|  \\    /   Operation     | Version:  10                                     |
+|   \\  /    And           |                                                 |
+|    \\/     Manipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      p;
+}
+// ************************************************************************* //
+
+dimensions      [0 2 -2 0 0 0 0];
+
+
+internalField   uniform 0;
+
+boundaryField
+{
+    inlet
+    {
+        type            zeroGradient;
+    }
+    outlet
+    {
+        type            totalPressure;
+        p0              uniform 0;
+        value           uniform 0;
+    }
+
+    walls
+    {
+        type            zeroGradient;
+    }
+    drone
+    {
+        type            zeroGradient;
+    }
+    blade1
+    {
+        type            zeroGradient;
+    }
+    blade2
+    {
+        type            zeroGradient;
+    }
+    blade3
+    {
+        type            zeroGradient;
+    }
+    blade4
+    {
+        type            zeroGradient;
+    }
+    #includeEtc "caseDicts/setConstraintTypes"
+}
+
+// ************************************************************************* //

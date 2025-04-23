@@ -1,0 +1,60 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| gamma: інтермітентність (0—ламінарно, 1—турбулентно)
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       volScalarField;
+    object      gammaInt;
+}
+
+dimensions      [0 0 0 0 0 0 0];
+
+// початково — ламінарний
+internalField   uniform 0;
+
+boundaryField
+{
+    inlet
+    {
+        type            fixedValue;
+        value           uniform 1;    // у вільному потоці — повністю турбулентно
+    }
+
+    outlet
+    {
+        type            zeroGradient;
+    }
+
+    walls
+    {
+        type            zeroGradient;
+    }
+
+    drone
+    {
+        type            zeroGradient;
+    }
+
+    blade1
+    {
+        type            zeroGradient;
+    }
+
+    blade2
+    {
+        type            zeroGradient;
+    }
+
+    blade3
+    {
+        type            zeroGradient;
+    }
+
+    blade4
+    {
+        type            zeroGradient;
+    }
+
+    #includeEtc "caseDicts/setConstraintTypes"
+}

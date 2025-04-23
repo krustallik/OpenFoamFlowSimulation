@@ -1,0 +1,61 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| ReTheta: критичне Reθ для початку переходу                             |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       volScalarField;
+    object      ReThetat;           // Поле Re_θ, що відповідає за критерій переходу
+}
+
+dimensions      [0 0 0 0 0 0 0];     // безрозмірне
+
+// Початкове поле: дуже мале ReThetat → моделі F_thetta та λ‑ітерації не ділять на нуль
+internalField   uniform 1e-6;       // “стабільний” початок замість чистого 0
+
+boundaryField
+{
+    inlet
+    {
+        type            fixedValue; // на вході чисто ламінарний стан
+        value           uniform 0;  // ReThetat = 0 → початок без переходу
+    }
+
+    outlet
+    {
+        type            zeroGradient; // природний вихід поля без втручання
+    }
+
+    walls
+    {
+        type            zeroGradient; // ReThetat зі стінок розвивається на основі внутрішнього поля
+    }
+
+    drone
+    {
+        type            zeroGradient; // аналогічно для поверхні дрона
+    }
+
+    blade1
+    {
+        type            zeroGradient; // для кожної лопаті
+    }
+
+    blade2
+    {
+        type            zeroGradient;
+    }
+
+    blade3
+    {
+        type            zeroGradient;
+    }
+
+    blade4
+    {
+        type            zeroGradient;
+    }
+
+    #includeEtc "caseDicts/setConstraintTypes"  
+    // додає стандартні пограничні обмеження (якщо є додаткові патчі)
+}

@@ -1,0 +1,63 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| omega: специфічна дисипація турбулентності                           |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       volScalarField;
+    object      omega;
+}
+
+dimensions      [0 0 -1 0 0 0 0];      // 1/s
+
+internalField   uniform 0.20;         // обране значення для L≈4 м
+
+boundaryField
+{
+    inlet
+    {
+        type            fixedValue;
+        value           uniform 0.20;
+    }
+
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      uniform 0.20;
+        value           uniform 0.20;
+    }
+
+    // Wall‑function для ω
+    walls
+    {
+        type            omegaWallFunction;
+        value           uniform 0.20;
+    }
+    drone
+    {
+        type            omegaWallFunction;
+        value           uniform 0.20;
+    }
+    blade1
+    {
+        type            omegaWallFunction;
+        value           uniform 0.20;
+    }
+    blade2
+    {
+        type            omegaWallFunction;
+        value           uniform 0.20;
+    }
+    blade3
+    {
+        type            omegaWallFunction;
+        value           uniform 0.20;
+    }
+    blade4
+    {
+        type            omegaWallFunction;
+        value           uniform 0.20;
+    }
+
+    #includeEtc "caseDicts/setConstraintTypes"
+}
